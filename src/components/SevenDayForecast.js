@@ -3,6 +3,8 @@ import React from "react";
 const SevenDayForecast = ({ weather }) => {
   const { daily } = weather;
 
+  console.log("daily", daily);
+
   return (
     <div
       style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
@@ -26,9 +28,9 @@ const SevenDayForecast = ({ weather }) => {
             <img
               src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
             />
-            <p>Date: {convertUnixToRegular(day.dt)}</p>
-            <p>Temperature: {day.temp.day}</p>
-            <p>Weather: {day.weather[0].main}</p>
+            <p>{convertUnixToRegular(day.dt)}</p>
+            <p>{Math.round(day.temp.day)} °F</p>
+            <p>{day.weather[0].main}</p>
           </div>
         );
       })}

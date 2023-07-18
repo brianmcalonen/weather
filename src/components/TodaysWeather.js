@@ -16,7 +16,7 @@ const TodaysWeather = ({ weather, locale }) => {
       <div sx={twoColumnStyle}>
         <div>
           <p>{convertUnixToRegular(weather.current.dt)}</p>
-          <p>Temperature: {weather.current.temp}</p>
+          <p>Temp: {Math.round(weather.current.temp)} °F</p>
           {/* <p>
             {weatherDetails[0].main}, {weatherDetails[0].description}.
           </p> */}
