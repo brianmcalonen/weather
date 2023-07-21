@@ -46,7 +46,7 @@ function convertUnixToRegular(unixTimestamp) {
 const todaysStyle = {
   padding: "10px",
   margin: "10px",
-  border: "1px solid #FFF",
+  border: "1px solid #dedede",
   borderRadius: "5px",
 };
 

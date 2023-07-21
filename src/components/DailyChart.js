@@ -29,7 +29,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Chart.js Line Chart",
+      text: "Weekly Highs & Lows",
     },
   },
 };
@@ -46,13 +46,13 @@ const DailyChart = ({ weather }) => {
     datasets: [
       {
         label: "Dataset 1",
-        data: daily.map((day) => day.temperature), // replace with actual temperature data
+        data: daily.map((day) => day.temp.max), // replace with actual temperature data
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
         label: "Dataset 2",
-        data: daily.map((day) => day.humidity), // replace with actual humidity data
+        data: daily.map((day) => day.temp.min), // replace with actual humidity data
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
@@ -61,7 +61,6 @@ const DailyChart = ({ weather }) => {
 
   return (
     <div>
-      <div>Daily Chart</div>
       <Line options={options} data={data} />
     </div>
   );
