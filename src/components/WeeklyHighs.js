@@ -36,7 +36,7 @@ export const options = {
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
-const DailyChart = ({ weather }) => {
+const WeeklyHighs = ({ weather }) => {
   const { daily } = weather;
 
   console.log("daily", daily);
@@ -66,4 +66,4 @@ const DailyChart = ({ weather }) => {
   );
 };
 
-export default DailyChart;
+export default WeeklyHighs;

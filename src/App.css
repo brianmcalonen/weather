@@ -1,7 +1,12 @@
-.App {
-  /* text-align: center; */
-  /* background-color: #282c34;
-  color: #FFF;
-  height: 100vh; */
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+.column-left, .column-right {
+  flex: 1;
+  padding: 20px;
+}
