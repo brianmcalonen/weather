@@ -63,7 +63,7 @@ const WeatherData = () => {
   }, [location]);
 
   return (
-    <div className="container">
+    <div>
       {/* <h1 style={{ textAlign: "center" }}>Weather Data</h1> */}
       {weather && <WeatherDisplay weather={weather} locale={locale} />}
     </div>

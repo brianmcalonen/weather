@@ -7,7 +7,7 @@ const SevenDayForecast = ({ weather }) => {
 
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       {daily.map((day, index) => {
         // Skip the first element
@@ -19,9 +19,13 @@ const SevenDayForecast = ({ weather }) => {
           <div
             key={index}
             style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
               margin: "10px",
               padding: "10px",
-              border: "1px solid #FFF",
+              border: "1px solid #dedede",
               borderRadius: "5px",
             }}
           >
