@@ -2,7 +2,6 @@ import React from "react";
 import SevenDayForecast from "./SevenDayForecast";
 import TodaysWeather from "./TodaysWeather";
 import DailyChart from "./DailyChart";
-import WeeklyHighs from "./WeeklyHighs";
 
 const WeatherDisplay = ({ weather, locale }) => {
   return (
@@ -13,7 +12,6 @@ const WeatherDisplay = ({ weather, locale }) => {
       </div>
       <div className="column-right">
         <SevenDayForecast weather={weather} />
-        {/* <WeeklyHighs weather={weather} /> */}
       </div>
     </div>
   );
