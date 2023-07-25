@@ -13,7 +13,7 @@ const WeatherDisplay = ({ weather, locale }) => {
       </div>
       <div className="column-right">
         <SevenDayForecast weather={weather} />
-        <WeeklyHighs weather={weather} />
+        {/* <WeeklyHighs weather={weather} /> */}
       </div>
     </div>
   );
