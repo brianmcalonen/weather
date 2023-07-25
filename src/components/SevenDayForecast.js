@@ -6,38 +6,47 @@ const SevenDayForecast = ({ weather }) => {
   console.log("daily", daily);
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      {daily.map((day, index) => {
-        // Skip the first element
-        if (index === 0) {
-          return null;
-        }
+    <div>
+      <br />
+      <h5 style={{ textAlign: "left" }}>Seven day forecast</h5>
 
-        return (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "100%",
-              margin: "10px",
-              padding: "10px 30px",
-              border: "1px solid #dedede",
-              borderRadius: "5px",
-            }}
-          >
-            <p>{convertUnixToRegular(day.dt)}</p>
-            <img
-              src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
-            />
-            <p>{Math.round(day.temp.day)} °F</p>
-            <p>{day.weather[0].main}</p>
-          </div>
-        );
-      })}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {daily.map((day, index) => {
+          // Skip the first element
+          if (index === 0) {
+            return null;
+          }
+
+          return (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "100%",
+                margin: "10px",
+                padding: "10px 30px",
+                border: "1px solid #dedede",
+                borderRadius: "5px",
+              }}
+            >
+              <p>{convertUnixToRegular(day.dt)}</p>
+              <img
+                src={`https://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
+              />
+              <p>{Math.round(day.temp.day)} °F</p>
+              <p>{day.weather[0].main}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

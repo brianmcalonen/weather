@@ -10,3 +10,11 @@
   flex: 1;
   padding: 20px;
 }
+
+.column-left {
+  min-width: 60%;
+}
+
+.column-right {
+  min-width: 40%;
+}

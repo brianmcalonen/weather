@@ -2,6 +2,7 @@ import React from "react";
 import SevenDayForecast from "./SevenDayForecast";
 import TodaysWeather from "./TodaysWeather";
 import DailyChart from "./DailyChart";
+import "../App.css";
 
 const WeatherDisplay = ({ weather, locale }) => {
   return (
