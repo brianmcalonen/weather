@@ -1,10 +1,6 @@
 import React from "react";
 
 const TodaysWeather = ({ weather, locale }) => {
-  const weatherX = weather;
-
-  console.log("weatherX", weatherX);
-
   return (
     <div style={todaysStyle}>
       <h2>

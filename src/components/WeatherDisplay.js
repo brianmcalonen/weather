@@ -9,7 +9,7 @@ const WeatherDisplay = ({ weather, locale }) => {
     <div className="container">
       <div className="column-left">
         <TodaysWeather weather={weather} locale={locale} />
-        <DailyChart weather={weather} />
+        <DailyChart weather={weather} locale={locale} />
       </div>
       <div className="column-right">
         <SevenDayForecast weather={weather} />

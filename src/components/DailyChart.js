@@ -29,32 +29,33 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Weekly Highs & Lows",
+      text: "Hourly weather",
     },
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+const getHour = (dt) => {
+  let date = new Date(dt * 1000);
+  let hour = date.getHours();
+  let ampm = hour >= 12 ? "pm" : "am";
+  hour = hour % 12;
+  hour = hour ? hour : 12; // the hour '0' should be '12'
+  return hour + ampm;
+};
 
 const DailyChart = ({ weather }) => {
-  const { daily } = weather;
+  const next12hours = weather.hourly.slice(0, 12);
 
-  console.log("daily", daily);
+  const labels = next12hours.map((hourData) => getHour(hourData.dt));
 
   const data = {
     labels,
     datasets: [
       {
-        label: "High temp",
-        data: daily.map((day) => day.temp.max), // replace with actual temperature data
+        label: "Temperature",
+        data: next12hours.map((hourData) => hourData.temp),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "Low temp",
-        data: daily.map((day) => day.temp.min), // replace with actual humidity data
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],
   };

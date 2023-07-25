@@ -57,16 +57,13 @@ const WeatherData = () => {
 
   useEffect(() => {
     if (location.latitude && location.longitude) {
-      fetchWeather();
       fetchLocale();
+      fetchWeather();
     }
   }, [location]);
 
   return (
-    <div>
-      {/* <h1 style={{ textAlign: "center" }}>Weather Data</h1> */}
-      {weather && <WeatherDisplay weather={weather} locale={locale} />}
-    </div>
+    <div>{weather && <WeatherDisplay weather={weather} locale={locale} />}</div>
   );
 };
 
