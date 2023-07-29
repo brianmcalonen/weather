@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import WeatherDisplay from "./WeatherDisplay";
+import SearchBar from "./SearchBar";
+import { Spinner } from "react-bootstrap";
 
 const WeatherData = () => {
   const [location, setLocation] = useState({
@@ -10,31 +12,34 @@ const WeatherData = () => {
   });
   const [weather, setWeather] = useState(null);
   const [locale, setLocale] = useState(null);
+  const [loading, setLoading] = useState(false); // New piece of state to track loading status
 
   const fetchWeather = async () => {
     const API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
-
     const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${location.latitude}&lon=${location.longitude}&exclude={part}&appid=${API_KEY}&units=imperial`;
 
+    setLoading(true); // Set loading to true when fetch begins
     try {
       const response = await axios.get(url);
       setWeather(response.data);
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
+    setLoading(false); // Set loading to false when fetch completes
   };
 
   const fetchLocale = async () => {
     const API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
-
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}`;
 
+    setLoading(true); // Set loading to true when fetch begins
     try {
       const response = await axios.get(url);
       setLocale(response.data);
     } catch (error) {
       console.error("Error fetching locale data:", error);
     }
+    setLoading(false); // Set loading to false when fetch completes
   };
 
   useEffect(() => {
@@ -63,7 +68,20 @@ const WeatherData = () => {
   }, [location]);
 
   return (
-    <div>{weather && <WeatherDisplay weather={weather} locale={locale} />}</div>
+    <div>
+      {loading ? (
+        <div className="d-flex justify-content-center">
+          <Spinner animation="border" role="status">
+            {/* <span className="sr-only">Loading...</span> */}
+          </Spinner>
+        </div>
+      ) : weather && locale ? (
+        <div>
+          <SearchBar />
+          <WeatherDisplay weather={weather} locale={locale} />
+        </div>
+      ) : null}
+    </div>
   );
 };
 

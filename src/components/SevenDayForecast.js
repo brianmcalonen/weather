@@ -3,7 +3,7 @@ import React from "react";
 const SevenDayForecast = ({ weather }) => {
   const { daily } = weather;
 
-  console.log("daily", daily);
+  // console.log("daily", daily);
 
   return (
     <div>
