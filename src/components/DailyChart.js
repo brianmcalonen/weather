@@ -46,6 +46,8 @@ const getHour = (dt) => {
 const DailyChart = ({ weather }) => {
   const next12hours = weather.hourly.slice(0, 12);
 
+  console.log("weather", weather);
+
   const labels = next12hours.map((hourData) => getHour(hourData.dt));
 
   const data = {
@@ -54,8 +56,14 @@ const DailyChart = ({ weather }) => {
       {
         label: "Temperature",
         data: next12hours.map((hourData) => hourData.temp),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: "rgb(236, 110, 77)",
+        backgroundColor: "rgba(236, 110, 77, 0.5)",
+      },
+      {
+        label: "Humidity",
+        data: next12hours.map((hourData) => hourData.humidity),
+        borderColor: "rgb(77, 177, 236)",
+        backgroundColor: "rgba(77, 177, 236, 0.5)",
       },
     ],
   };

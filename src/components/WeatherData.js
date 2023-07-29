@@ -12,7 +12,7 @@ const WeatherData = () => {
   });
   const [weather, setWeather] = useState(null);
   const [locale, setLocale] = useState(null);
-  const [loading, setLoading] = useState(false); // New piece of state to track loading status
+  const [loading, setLoading] = useState(true);
 
   const fetchWeather = async () => {
     const API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
@@ -32,14 +32,14 @@ const WeatherData = () => {
     const API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}`;
 
-    setLoading(true); // Set loading to true when fetch begins
+    setLoading(true);
     try {
       const response = await axios.get(url);
       setLocale(response.data);
     } catch (error) {
       console.error("Error fetching locale data:", error);
     }
-    setLoading(false); // Set loading to false when fetch completes
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -71,13 +71,10 @@ const WeatherData = () => {
     <div>
       {loading ? (
         <div className="d-flex justify-content-center">
-          <Spinner animation="border" role="status">
-            {/* <span className="sr-only">Loading...</span> */}
-          </Spinner>
+          <Spinner animation="border" role="status"></Spinner>
         </div>
       ) : weather && locale ? (
         <div>
-          {/* Pass setLocation to SearchBar */}
           <SearchBar setLocation={setLocation} />
           <WeatherDisplay weather={weather} locale={locale} />
         </div>
