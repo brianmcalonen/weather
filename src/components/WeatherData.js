@@ -77,7 +77,8 @@ const WeatherData = () => {
         </div>
       ) : weather && locale ? (
         <div>
-          <SearchBar />
+          {/* Pass setLocation to SearchBar */}
+          <SearchBar setLocation={setLocation} />
           <WeatherDisplay weather={weather} locale={locale} />
         </div>
       ) : null}

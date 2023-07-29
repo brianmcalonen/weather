@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "../App.css";
 
-const SearchBar = () => {
+const SearchBar = ({ setLocation }) => {
   const autocompleteInputRef = useRef(null);
 
   useEffect(() => {
@@ -12,11 +12,17 @@ const SearchBar = () => {
 
     autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
-      // This logs the selected place object to console. Replace this with your own handler.
-      console.log(place);
-      console.log(place.geometry.location.lat);
+      const latitude = place.geometry.location.lat();
+      const longitude = place.geometry.location.lng();
+
+      // Set new location
+      setLocation({
+        latitude,
+        longitude,
+        error: null,
+      });
     });
-  }, []);
+  }, [setLocation]);
 
   return (
     <div className="search-bar-container">
