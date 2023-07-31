@@ -1,6 +1,7 @@
 import React from "react";
 
 const TodaysWeather = ({ weather, locale }) => {
+  console.log("weather.current", weather.current);
   return (
     <div style={todaysStyle}>
       <h2>
@@ -12,12 +13,14 @@ const TodaysWeather = ({ weather, locale }) => {
       <div sx={twoColumnStyle}>
         <div>
           <p>{convertUnixToRegular(weather.current.dt)}</p>
-          <p>Temp: {Math.round(weather.current.temp)} °F</p>
-          {/* <p>
-            {weatherDetails[0].main}, {weatherDetails[0].description}.
-          </p> */}
-        </div>
-        <div>
+          <p>{Math.round(weather.current.temp)} °F</p>
+          <p>H: {Math.round(weather.daily[0].temp.max)} °F</p>
+          <p>L: {Math.round(weather.daily[0].temp.min)} °F</p>
+
+          <p>
+            {weather.current.weather[0].main},{" "}
+            {weather.current.weather[0].description}.
+          </p>
           <p>
             Wind: {weather.current.wind_deg} & {weather.current.wind_speed}
           </p>
