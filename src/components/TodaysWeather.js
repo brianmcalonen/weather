@@ -1,46 +1,52 @@
 import React from "react";
 
 const TodaysWeather = ({ weather, locale }) => {
-  console.log("weather.current", weather.current);
   return (
     <div style={todaysStyle}>
-      <h2>
-        {locale.name}, {locale.sys.country}
-      </h2>
-      <img
-        src={`https://openweathermap.org/img/wn/${weather.current.weather[0].icon}@2x.png`}
-      />
-      <div sx={twoColumnStyle}>
+      <div style={cityStyle}>
+        <br />
+        <h2>
+          {locale.name}, {locale.sys.country}
+        </h2>
+        <br />
+      </div>
+      <div style={twoColumnStyle}>
+        <div style={tempStyle}>
+          <p style={currentTempStyle}>
+            {Math.round(weather.current.temp)}
+            <span style={degreeStyle}> °F</span>
+          </p>
+          <div style={minMaxTempStyle}>
+            <p style={{ paddingRight: "10px" }}>
+              H: {Math.round(weather.daily[0].temp.max)}°
+            </p>
+            <p>L: {Math.round(weather.daily[0].temp.min)}°</p>
+          </div>
+        </div>
         <div>
-          <p>{convertUnixToRegular(weather.current.dt)}</p>
-          <p>{Math.round(weather.current.temp)} °F</p>
-          <p>H: {Math.round(weather.daily[0].temp.max)} °F</p>
-          <p>L: {Math.round(weather.daily[0].temp.min)} °F</p>
-
-          <p>
-            {weather.current.weather[0].main},{" "}
-            {weather.current.weather[0].description}.
-          </p>
-          <p>
-            Wind: {weather.current.wind_deg} & {weather.current.wind_speed}
-          </p>
+          <img
+            src={`https://openweathermap.org/img/wn/${weather.current.weather[0].icon}@2x.png`}
+          />
         </div>
       </div>
+      <br />
+
+      <div style={tempStyle}>
+        <p>
+          {weather.current.weather[0].main},{" "}
+          {weather.current.weather[0].description}.
+        </p>
+        <p>{weather.daily[0].summary}</p>
+        <p>
+          Wind: {weather.current.wind_deg} & {weather.current.wind_speed}
+        </p>
+      </div>
+      <br />
     </div>
   );
 };
 
 export default TodaysWeather;
-
-function convertUnixToRegular(unixTimestamp) {
-  // Convert the timestamp to milliseconds by multiplying by 1000
-  const date = new Date(unixTimestamp * 1000);
-
-  // Then you can use methods of the Date object to format the date/time
-  const dateString = date.toLocaleString(); // this will give you a string in the format: MM/DD/YYYY, HH:MM:SS AM/PM
-
-  return dateString;
-}
 
 const todaysStyle = {
   padding: "10px",
@@ -51,6 +57,35 @@ const todaysStyle = {
 
 const twoColumnStyle = {
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-around",
+  alignItems: "flex-start",
   width: "100%",
+};
+
+const cityStyle = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+};
+
+const tempStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};
+
+const currentTempStyle = {
+  fontSize: "3em",
+};
+
+const minMaxTempStyle = {
+  display: "flex",
+  justifyContent: "space-around",
+  width: "100%",
+};
+
+const degreeStyle = {
+  fontSize: "0.5em",
 };
